@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>JavaCur — Java for the Curious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<canvas id="confetti-canvas"></canvas>
+<div class="toast-wrap" id="toastWrap"></div>
+<div id="root"></div>
+
+<script>
+/* Load course + code-question data from /data/*.json before the app starts.
+   (Synchronous on purpose so app.js can read it at startup, exactly as before.) */
+['courses-data:data/courses.json', 'codeq-data:data/codeq.json'].forEach(function (pair) {
+  var i = pair.indexOf(':'), id = pair.slice(0, i), url = pair.slice(i + 1);
+  var x = new XMLHttpRequest(); x.open('GET', url, false); x.send();
+  var s = document.createElement('script'); s.id = id; s.type = 'application/json'; s.textContent = x.responseText;
+  document.body.appendChild(s);
+});
+</script>
+<script src="js/shim.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
